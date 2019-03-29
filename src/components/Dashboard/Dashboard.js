@@ -28,9 +28,9 @@ class Dashboard extends Component {
                             <h3>{product.name}</h3>
                             <h3>${product.price}</h3>
                         </div>
-                        <div>
-                            <button>Delete</button>
-                            <button>Edit</button>
+                        <div className='button-container'>
+                            <button className='product-buttons'>Delete</button>
+                            <button className='product-buttons' onClick={() => this.props.handleEdit(product)}>Edit</button>
                         </div>
                     </div>
                 </div>

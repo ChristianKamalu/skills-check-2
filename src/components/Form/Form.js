@@ -25,22 +25,36 @@ class Form extends Component {
             })
     }
 
+    
+
     render() {
-        return (
+        return this.props.edit ? (
             <div className='form'>
-                <img src={this.state.image_url} alt='this.state.name' height='50%' width='80%'/>
+                <img className='form-pic' src={this.props.product.productImage} alt='this.state.name'/>
                 <h3>Image URL:</h3>
-                <input type='text' name='image_url' onChange={(e) => this.handleChange(e)}/>
+                <input type='text' placeholder={this.props.product.productImage} name='image_url' onChange={(e) => this.handleChange(e)}/>
                 <h3>Name:</h3>
-                <input type='text' name='name' onChange={(e) => this.handleChange(e)}/>
+                <input type='text' placeholder={this.props.product.productName} name='name' onChange={(e) => this.handleChange(e)}/>
                 <h3>Price:</h3>
-                <input type='number' name='price' onChange={(e) => this.handleChange(e)}/>
+                <input type='number' placeholder={this.props.product.productPrice} name='price' onChange={(e) => this.handleChange(e)}/>
                 <div className='button-container'>
-                    <button className='form-buttons'>Cancel</button>
-                    <button className='form-buttons' onClick={this.handleAdd}>Add to Inventory</button>
+                    <button className='form-buttons' onClick={this.props.handleEdit}>Cancel</button>
+                    <button className='form-buttons' onClick={() => this.props.handleUpdate(this.state)}>Make Changes</button>
                 </div>
             </div>
-        )
+        ) : (<div className='form'>
+        <img className='form-pic' src={this.state.image_url} alt='this.state.name'/>
+        <h3>Image URL:</h3>
+        <input type='text' name='image_url' onChange={(e) => this.handleChange(e)}/>
+        <h3>Name:</h3>
+        <input type='text' name='name' onChange={(e) => this.handleChange(e)}/>
+        <h3>Price:</h3>
+        <input type='number' name='price' onChange={(e) => this.handleChange(e)}/>
+        <div className='button-container'>
+            <button className='form-buttons'>Cancel</button>
+            <button className='form-buttons' onClick={this.handleAdd}>Add to Inventory</button>
+        </div>
+    </div>)
     }
 }
 
